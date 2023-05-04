@@ -4,6 +4,14 @@ const inquirer = require("inquirer");
 
 const generateMarkdown = require("./utils/generateMarkdown");
 
+function inputValidation(value) {
+  if (value != "") {
+    return true;
+  } else {
+    return "Please answer the question with some kind on input.";
+  }
+}
+
 function getLicense(value) {
   if (value === "GNU AGPLv3") {
     return "[![License: AGPL v3](https://img.shields.io/badge/License-AGPL%20v3-blue.svg)](https://www.gnu.org/licenses/agpl-3.0)";
@@ -21,15 +29,6 @@ function getLicense(value) {
     return "[![License: MPL 2.0](https://img.shields.io/badge/License-MPL%202.0-brightgreen.svg)](https://opensource.org/licenses/MPL-2.0)";
   }
 }
-
-function inputValidation(value) {
-  if (value != "") {
-    return true;
-  } else {
-    return "Please answer the question with some kind on input.";
-  }
-}
-
 const questions = [
   {
     type: "input",
