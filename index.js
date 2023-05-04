@@ -1,13 +1,9 @@
-// need the const fs variable here
 const fs = require("fs");
 
-// need inquirer variable here
 const inquirer = require("inquirer");
 
-// need a markdown js file here
 const generateMarkdown = require("./utils/generateMarkdown");
 
-// License function and  if/else section here
 function getLicense(value) {
   if (value === "GNU AGPLv3") {
     return "[![License: AGPL v3](https://img.shields.io/badge/License-AGPL%20v3-blue.svg)](https://www.gnu.org/licenses/agpl-3.0)";
@@ -26,7 +22,7 @@ function getLicense(value) {
   }
 }
 
-function validateInput(value) {
+function inputValidation(value) {
   if (value != "") {
     return true;
   } else {
@@ -35,41 +31,35 @@ function validateInput(value) {
 }
 
 const questions = [
-  // Question for the Title
   {
     type: "input",
     name: "title",
     message: "What is the title of your project?",
-    validate: validateInput,
+    validate: inputValidation,
   },
-  // Question for the project Description
+
   {
     type: "input",
     name: "description",
     message: "Please enter a description of your project.",
-    validate: validateInput,
+    validate: inputValidation,
   },
 
-  // Table of Contents, andling this in the markdown.js
-
-  // Question for Installation
   {
     type: "input",
     name: "installation",
     message:
       "Please enter an explanation how to install the software, or commands for the program.",
-    validate: validateInput,
+    validate: inputValidation,
   },
 
-  // Question for Usage
   {
     type: "input",
     name: "usage",
     message: "Please describe how we can use this program/project.",
-    validate: validateInput,
+    validate: inputValidation,
   },
 
-  // Question for License
   {
     type: "list",
     name: "license",
@@ -83,35 +73,31 @@ const questions = [
       "MIT",
       "Mozilla",
     ],
-    validate: validateInput,
+    validate: inputValidation,
   },
 
-  // Question for Contributing
   {
     type: "input",
     name: "contributing",
     message: "How can users contribute to your project.",
-    validate: validateInput,
+    validate: inputValidation,
   },
 
-  // Question for Tests
   {
     type: "input",
     name: "tests",
     message:
       "Please enter any testing instructions you would like to provide for this project.",
-    validate: validateInput,
+    validate: inputValidation,
   },
 
-  // QUESTIONS section -- github
   {
     type: "input",
     name: "userName",
     message: "What is your GitHub username?",
-    validate: validateInput,
+    validate: inputValidation,
   },
 
-  // QUESTIONS section -- email address
   {
     type: "input",
     name: "userEmail",
@@ -126,7 +112,6 @@ const questions = [
   },
 ];
 
-// function to generate the ReadMe here
 function writeToFile(fileName, data) {
   fs.writeFile(fileName, generateMarkdown(data), function (err) {
     if (err) {
@@ -135,7 +120,6 @@ function writeToFile(fileName, data) {
   });
 }
 
-// function to initalize the beginning of the questions
 function init() {
   inquirer.prompt(questions).then((data) => {
     console.log(JSON.stringify(data, null, " "));
@@ -144,5 +128,4 @@ function init() {
   });
 }
 
-// call the function to initalize the beginning of the questions
 init();
