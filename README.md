@@ -12,11 +12,11 @@ The user should ensure they install inquirer through npm
 
 This program can be used to easily generate a README after following the onscreen prompts in your terminal.
 
-##License
+## License
 
 MIT License
 
-##Video Walkthrough Link
+## Video Walkthrough Link
 
 https://drive.google.com/file/d/1B29xJ7NjqpruxQKe351GSZtActQEDL2J/view
 
